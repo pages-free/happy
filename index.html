@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+  <style>
+    body {
+    margin: 0;
+    padding: 0;
+    background-color: #fce4ec;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: radial-gradient(#ff9a9e 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.birthday-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    color: #e91e63;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.name {
+    color: #ff4081;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.message {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.balloons {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+}
+
+.balloon {
+    width: 60px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.balloon:nth-child(1) {
+    background-color: #e91e63;
+    transform: rotate(5deg);
+}
+
+.balloon:nth-child(2) {
+    background-color: #9c27b0;
+    transform: rotate(-5deg);
+}
+
+.balloon:nth-child(3) {
+    background-color: #3f51b5;
+    transform: rotate(3deg);
+}
+
+.balloon:nth-child(4) {
+    background-color: #ff9800;
+    transform: rotate(-3deg);
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background-color: #bdbdbd;
+}
+
+.cake {
+    position: relative;
+    width: 120px;
+    height: 100px;
+    margin: 40px auto;
+}
+
+.plate {
+    width: 140px;
+    height: 10px;
+    background-color: #bdbdbd;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.layer {
+    width: 120px;
+    height: 40px;
+    background-color: #ffeb3b;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.icing {
+    width: 120px;
+    height: 15px;
+    background-color: #e91e63;
+    border-radius: 10px 10px 0 0;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.candle {
+    width: 10px;
+    height: 30px;
+    background-color: #4caf50;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.flame {
+    width: 15px;
+    height: 25px;
+    background-color: #ff9800;
+    border-radius: 50% 50% 20% 20%;
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px #ffeb3b;
+    animation: flicker 1s infinite alternate;
+}
+
+@keyframes flicker {
+    0% { transform: translateX(-50%) scale(1); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+}
+
+.surprise-btn {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+}
+
+.surprise-btn:hover {
+    background-color: #c2185b;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(233, 30, 99, 0.4);
+}
+
+.surprise-btn:active {
+    transform: translateY(1px);
+}
+
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    opacity: 0;
+    animation: confetti-fall 5s linear forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(1000px) rotate(720deg);
+        opacity: 0;
+    }
+}
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="birthday-card">
+            <h1 class="title">¡Feliz Cumpleaños!</h1>
+            <h2 class="name" id="friendName">Querida Amiga</h2>
+            <div class="message">
+                <p>En este día tan especial, quiero desearte lo mejor.</p>
+                <p>Que todos tus sueños se hagan realidad y que este nuevo año de vida esté lleno de alegrías, amor y momentos inolvidables.</p>
+                <p>¡Eres una persona increíble y te mereces todo lo bueno que la vida tiene para ofrecer!</p>
+            </div>
+            <div class="balloons">
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+            </div>
+            <div class="cake">
+                <div class="plate"></div>
+                <div class="layer"></div>
+                <div class="icing"></div>
+                <div class="candle"></div>
+                <div class="flame"></div>
+            </div>
+            <button id="surpriseBtn" class="surprise-btn">¡Hazme clic para una sorpresa!</button>
+            <div id="confettiContainer" class="confetti-container"></div>
+        </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    // Mostrar directamente el nombre "Astrid"
+    document.getElementById('friendName').textContent = 'Astrid';
+
+    // Efecto de confeti al hacer clic en el botón
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const confettiContainer = document.getElementById('confettiContainer');
+
+    surpriseBtn.addEventListener('click', function() {
+        createConfetti();
+        animateCake();
+        this.textContent = '¡Que tengas un día maravilloso!';
+        this.style.backgroundColor = '#4CAF50';
+    });
+
+    function createConfetti() {
+        // Limpiar confeti anterior
+        confettiContainer.innerHTML = '';
+        
+        // Crear nuevo confeti
+        const colors = ['#e91e63', '#9c27b0', '#3f51b5', '#4CAF50', '#FFC107', '#FF9800'];
+        
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            
+            // Estilo aleatorio
+            const size = Math.random() * 10 + 5;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const left = Math.random() * 100;
+            const animationDuration = Math.random() * 3 + 2;
+            const delay = Math.random() * 5;
+            
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.backgroundColor = color;
+            confetti.style.left = `${left}%`;
+            confetti.style.animationDuration = `${animationDuration}s`;
+            confetti.style.animationDelay = `${delay}s`;
+            
+            // Forma aleatoria (círculo o cuadrado)
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            }
+            
+            confettiContainer.appendChild(confetti);
+        }
+    }
+
+    function animateCake() {
+        const candle = document.querySelector('.candle');
+        const flame = document.querySelector('.flame');
+        
+        // Animación para apagar la vela
+        flame.style.animation = 'none';
+        flame.style.opacity = '0';
+        
+        // Animación de la vela derritiéndose
+        candle.style.transition = 'all 1s ease';
+        candle.style.height = '10px';
+        candle.style.backgroundColor = '#8BC34A';
+        
+        // Mostrar mensaje después de la animación
+        setTimeout(() => {
+            const message = document.createElement('p');
+            message.textContent = '¡Sopla las velas y pide un deseo!';
+            message.style.color = '#e91e63';
+            message.style.fontWeight = 'bold';
+            message.style.marginTop = '20px';
+            document.querySelector('.message').appendChild(message);
+        }, 1000);
+    }
+
+    // Efecto de globos flotando
+    const balloons = document.querySelectorAll('.balloon');
+    balloons.forEach((balloon, index) => {
+        balloon.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite alternate`;
+    });
+
+    // Agregar estilos dinámicos para la animación de flotar
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes float {
+            0% { transform: translateY(0) rotate(${Math.random() * 10}deg); }
+            100% { transform: translateY(-20px) rotate(${Math.random() * 10}deg); }
+        }
+    `;
+    document.head.appendChild(style);
+});
+    </script>
+</body>
+</html>
